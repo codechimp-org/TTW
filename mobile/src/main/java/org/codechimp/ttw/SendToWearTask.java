@@ -27,11 +27,6 @@ public class SendToWearTask extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... params) {
         String pattern = params[0];
 
-        // Off, On
-        //pattern = "0,500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500";  // Star Wars Imperial
-        //pattern = "0,150,50,75,50,75,50,150,50,75,50,75,50,300";
-        pattern = "0,75,50,75,50,75";
-
         // Connect to wear
         final GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {

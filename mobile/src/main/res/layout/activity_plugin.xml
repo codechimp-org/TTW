@@ -6,31 +6,22 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <Button
+        android:id="@+id/customButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/custom"
+        android:textColor="@color/Accent"/>
+
+    <ListView
+        android:id="@+id/patternsListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/customButton"
+        android:layout_below="@id/toolbar" />
 
-        <LinearLayout
-            android:id="@+id/layout_basic"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:visibility="gone">
-
-            <ListView
-                android:id="@+id/chooserListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@item_plugin"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/custom"
-            android:text="@string/custom"/>
-    </LinearLayout>
 </RelativeLayout>

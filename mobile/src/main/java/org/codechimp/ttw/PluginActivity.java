@@ -2,32 +2,38 @@ package org.codechimp.ttw;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 /**
-* This is the "Edit" activity for a Locale Plug-in.
-* <p/>
-* This Activity can be started in one of two states:
-* <ul>
-* <li>New plug-in instance: The Activity's Intent will not contain
-* {@link com.twofortyfouram.locale.Intent#EXTRA_BUNDLE}.</li>
-* <li>Old plug-in instance: The Activity's Intent will contain
-* {@link com.twofortyfouram.locale.Intent#EXTRA_BUNDLE} from a previously saved plug-in instance that the
-* user is editing.</li>
-* </ul>
-*
-* @see com.twofortyfouram.locale.Intent#ACTION_EDIT_SETTING
-* @see com.twofortyfouram.locale.Intent#EXTRA_BUNDLE
-*/
-public final class PluginActivity extends AbstractPluginActivity  { //implements LoaderManager.LoaderCallbacks<Cursor> {
+ * This is the "Edit" activity for a Locale Plug-in.
+ * <p/>
+ * This Activity can be started in one of two states:
+ * <ul>
+ * <li>New plug-in instance: The Activity's Intent will not contain
+ * {@link com.twofortyfouram.locale.Intent#EXTRA_BUNDLE}.</li>
+ * <li>Old plug-in instance: The Activity's Intent will contain
+ * {@link com.twofortyfouram.locale.Intent#EXTRA_BUNDLE} from a previously saved plug-in instance that the
+ * user is editing.</li>
+ * </ul>
+ *
+ * @see com.twofortyfouram.locale.Intent#ACTION_EDIT_SETTING
+ * @see com.twofortyfouram.locale.Intent#EXTRA_BUNDLE
+ */
+public final class PluginActivity extends AbstractPluginActivity { //implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private ListView patternsListView;
     private Button buttonCustom;
-//    private static final int LOADER_ID = 2;
-//    private ListView myListView;
-//    private PluginItemAdapter adapter;
+
+    private String[] patternNames;
+    private String[] patternValues;
+
+    private String patternName = "";
+    private String patternValue = "";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,11 +42,22 @@ public final class PluginActivity extends AbstractPluginActivity  { //implements
         setContentView(R.layout.activity_plugin);
 
         // Get references to UI widgets
-        buttonCustom = (Button) findViewById(R.id.custom);
-//        myListView = (ListView) findViewById(R.id.chooserListView);
-//        final TextView myEmptyView = (TextView) findViewById(R.id.emptyChooserView);
-//        myListView.setEmptyView(myEmptyView);
-//
+        patternsListView = (ListView) findViewById(R.id.patternsListView);
+        buttonCustom = (Button) findViewById(R.id.customButton);
+
+        patternNames = getResources().getStringArray(R.array.patternNames);
+        patternValues = getResources().getStringArray(R.array.patternValues);
+
+        patternsListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, patternNames));
+
+        patternsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                patternName = patternNames[position];
+                patternValue = patternValues[position];
+                finish();
+            }
+        });
 
         buttonCustom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,17 +65,13 @@ public final class PluginActivity extends AbstractPluginActivity  { //implements
                 //TODO - display custom tap dialog
             }
         });
-//        fillData(savedInstanceState);
     }
 
     @Override
     public void finish() {
         if (!isCanceled()) {
-//            if (adapter.SelectedItemID > 0) {
+            if (!patternName.isEmpty()) {
                 final Intent resultIntent = new Intent();
-
-//                Uri itemUri = Uri.parse(ItemContentProvider.CONTENT_URI + "/" + adapter.SelectedItemID);
-                Uri itemUri = Uri.parse("test");
 
                 /*
                  * This extra is the data to ourselves: either for the Activity or the BroadcastReceiver. Note
@@ -68,21 +81,18 @@ public final class PluginActivity extends AbstractPluginActivity  { //implements
                  * Android platform objects (A Serializable class private to this plug-in's APK cannot be
                  * stored in the Bundle, as Locale's classloader will not recognize it).
                  */
-//                final Bundle resultBundle = PluginBundleManager.generateBundle(getApplicationContext(), adapter.SelectedItemTitle, itemUri.toString());
-                final Bundle resultBundle = PluginBundleManager.generateBundle(getApplicationContext(), "test", itemUri.toString());
+                final Bundle resultBundle = PluginBundleManager.generateBundle(getApplicationContext(), patternName, patternValue);
                 resultIntent.putExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE, resultBundle);
 
                 /*
                  * The blurb is concise status text to be displayed in the host's UI.
                  */
-//                final String blurb = generateBlurb(getApplicationContext(), adapter.SelectedItemTitle);
-                final String blurb = generateBlurb(getApplicationContext(), "test");
+                final String blurb = generateBlurb(getApplicationContext(), patternName);
                 resultIntent.putExtra(com.twofortyfouram.locale.Intent.EXTRA_STRING_BLURB, blurb);
 
                 setResult(RESULT_OK, resultIntent);
-//            }
+            }
         }
-
         super.finish();
     }
 
@@ -102,72 +112,4 @@ public final class PluginActivity extends AbstractPluginActivity  { //implements
 
         return message;
     }
-
-//    private void fillData(final Bundle savedInstanceState) {
-//
-//        // Fields from the database (projection)
-//        // Must include the _id column for the adapter to work
-//        String[] from = new String[]{ItemTable.COLUMN_TITLE, ItemTable.COLUMN_TYPE, ItemTable.COLUMN_DATA};
-//        // Fields on the UI to which we map
-//        int[] to = new int[]{R.id.itemtitle};
-//
-//        getLoaderManager().initLoader(LOADER_ID, null, this);
-//
-//        adapter = new PluginItemAdapter(this, R.layout.item_plugin, null, from, to, 0);
-//
-//        myListView.setAdapter(adapter);
-//
-//        if (null == savedInstanceState) {
-//            BundleScrubber.scrub(getIntent());
-//            final Bundle localeBundle = getIntent().getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE);
-//            BundleScrubber.scrub(localeBundle);
-//
-//            if (PluginBundleManager.isBundleValid(localeBundle)) {
-//                //Select current item
-//                adapter.SelectedItemTitle = localeBundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_TITLE);
-//                Uri itemUri = Uri.parse(localeBundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_URI));
-//                adapter.SelectedItemID = Long.parseLong(itemUri.getLastPathSegment());
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-//        String[] projection = {ItemTable.COLUMN_ID, ItemTable.COLUMN_TITLE, ItemTable.COLUMN_TYPE, ItemTable.COLUMN_DATA};
-//        return new CursorLoader(this,
-//                ItemContentProvider.CONTENT_URI, projection, null, null, ItemTable.COLUMN_TITLE);
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-//        adapter.swapCursor(cursor);
-//        selectItem();
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-//        adapter.swapCursor(null);
-//        selectItem();
-//    }
-//
-//    void selectItem() {
-//        try {
-//            myListView.getItemAtPosition(getAdapterPositionById(myListView.getAdapter(), adapter.SelectedItemID));
-//            myListView.setItemChecked(getAdapterPositionById(myListView.getAdapter(), adapter.SelectedItemID), true);
-//        } catch (NoSuchElementException ex) {
-//            //Item no longer exists, select nothing
-//        }
-//    }
-//
-//    int getAdapterPositionById(final Adapter adapter, final long id) throws NoSuchElementException {
-//        final int count = adapter.getCount();
-//
-//        for (int pos = 0; pos < count; pos++) {
-//            if (id == adapter.getItemId(pos)) {
-//                return pos;
-//            }
-//        }
-//
-//        throw new NoSuchElementException();
-//    }
 }

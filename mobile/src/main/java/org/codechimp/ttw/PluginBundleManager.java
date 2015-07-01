@@ -24,8 +24,8 @@ public final class PluginBundleManager
      * <p>
      * URI of the item to be displayed
      */
-    public static final String BUNDLE_EXTRA_STRING_PATTERN = "org.codechimp.ttw.extra.STRING_PATTERN"; //$NON-NLS-1$
     public static final String BUNDLE_EXTRA_STRING_TITLE = "org.codechimp.ttw.extra.STRING_TITLE"; //$NON-NLS-1$
+    public static final String BUNDLE_EXTRA_STRING_PATTERN = "org.codechimp.ttw.extra.STRING_PATTERN"; //$NON-NLS-1$
 
     /**
      * Type: {@code int}.
@@ -38,7 +38,7 @@ public final class PluginBundleManager
      * having the version, the plug-in can better detect when such bugs occur.
      */
     public static final String BUNDLE_EXTRA_INT_VERSION_CODE =
-            "org.codechimp.qrwear.extra.INT_VERSION_CODE"; //$NON-NLS-1$
+            "org.codechimp.ttw.extra.1"; //$NON-NLS-1$
 
     /**
      * Method to verify the content of the bundle are correct.

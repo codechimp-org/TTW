@@ -22,7 +22,7 @@ public final class Constants {
     /**
      * Log tag for logcat messages.
      */
-    public static final String LOG_TAG = "TapTapWear"; //$NON-NLS-1$
+    public static final String LOG_TAG = "TTW"; //$NON-NLS-1$
 
     /**
      * Flag to enable logcat messages.
