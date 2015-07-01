@@ -29,4 +29,7 @@
     </string-array>
 
     <string name="custom">Custom</string>
+    <string name="title">Tasker, Tap Wear</string>
+    <string name="intro">This app is a Tasker plugin to trigger a vibration pattern on the wearable device only, for a discreet notification where a popup isn't required.</string>
+    <string name="hide_launcher">Hide launcher icon</string>
 </resources>

@@ -1,5 +1,6 @@
 package org.codechimp.ttw;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button hideLauncherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
             }
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+
+        hideLauncherButton = (Button) findViewById(R.id.hideLauncherButton);
+        hideLauncherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PackageManager p = getPackageManager();
+                p.setComponentEnabledSetting(getComponentName(), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                finish();
+            }
+        });
     }
 
 

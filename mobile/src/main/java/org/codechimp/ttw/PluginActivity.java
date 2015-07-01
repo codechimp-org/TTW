@@ -32,8 +32,8 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
     private String[] patternNames;
     private String[] patternValues;
 
-    private String patternName = "";
-    private String patternValue = "";
+    private String patternName;
+    private String patternValue;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                 /*
                  * This extra is the data to ourselves: either for the Activity or the BroadcastReceiver. Note
                  * that anything placed in this Bundle must be available to Locale's class loader. So storing
-                 * String, int, and other standard objects will work just fine. Parcelable objects are not
+                 * String, int, and other standard `objects will work just fine. Parcelable objects are not
                  * acceptable, unless they also implement Serializable. Serializable objects must be standard
                  * Android platform objects (A Serializable class private to this plug-in's APK cannot be
                  * stored in the Bundle, as Locale's classloader will not recognize it).

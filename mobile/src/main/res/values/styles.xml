@@ -10,4 +10,10 @@
         <item name="windowNoTitle">true</item>
         <item name="colorAccent">@color/Accent</item>
     </style>
+
+    <style name="TitleText" parent="@android:style/TextAppearance.Large">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/Text</item>
+    </style>
+
 </resources>
