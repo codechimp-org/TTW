@@ -1,2 +1,3 @@
-# TapTapWear
-Tap Tap Wear - discreet notifications
+# TTW
+Tasker Tap Wear - discreet notifications
+
