@@ -41,16 +41,16 @@ public final class FireReceiver extends BroadcastReceiver {
         final Bundle bundle = intent.getBundleExtra(com.twofortyfouram.locale.Intent.EXTRA_BUNDLE);
         BundleScrubber.scrub(bundle);
 
-        if (PluginBundleManager.isBundleValid(bundle)) {
-            final String pattern = bundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_PATTERN);
+        final String pattern;
 
-            new SendToWearTask(context).execute(pattern);
+        if (PluginBundleManager.isBundleValid(bundle)) {
+            pattern = bundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_PATTERN);
+        } else {
+            // No valid bundle, just use default pattern
+            final String[] patternValues = context.getResources().getStringArray(R.array.patternValues);
+            pattern = patternValues[0];
         }
-        else
-        {
-            // No bundle, just use default pattern
-            String[] patternValues = context.getResources().getStringArray(R.array.patternValues);
-            new SendToWearTask(context).execute(patternValues[0]);
-        }
+
+        new SendToWearTask(context).execute(pattern);
     }
 }
