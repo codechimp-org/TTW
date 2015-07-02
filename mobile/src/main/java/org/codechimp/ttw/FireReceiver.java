@@ -3,16 +3,8 @@ package org.codechimp.ttw;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
-import com.google.android.gms.wearable.Wearable;
 
 import java.util.Locale;
 
@@ -53,6 +45,12 @@ public final class FireReceiver extends BroadcastReceiver {
             final String pattern = bundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_PATTERN);
 
             new SendToWearTask(context).execute(pattern);
+        }
+        else
+        {
+            // No bundle, just use default pattern
+            String[] patternValues = context.getResources().getStringArray(R.array.patternValues);
+            new SendToWearTask(context).execute(patternValues[0]);
         }
     }
 }
