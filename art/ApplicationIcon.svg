@@ -13,7 +13,7 @@
    height="512"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.91 r"
    sodipodi:docname="ApplicationIcon.svg"
    inkscape:export-filename="C:\Programming\Android\WearCodes\art\ApplicationIcon.png"
    inkscape:export-xdpi="90"
@@ -27,8 +27,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2109375"
-     inkscape:cx="132.54194"
+     inkscape:zoom="2.2548314"
+     inkscape:cx="259.36095"
      inkscape:cy="256"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -76,5 +76,70 @@
        cy="796.36218"
        rx="156.78384"
        ry="156.80153" />
+    <path
+       style="fill:#ff6d00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 358.71788,692.96216 179.16854,792.56292 246.6112,808.64197 153.26341,899.75656 351.125,796.13604 276.53609,782.2902 Z"
+       id="path4138"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <g
+       id="g4177">
+      <path
+         sodipodi:open="true"
+         d="m 391.33177,645.71745 a 230.52487,201.80293 0 0 1 77.19895,150.62147 230.52487,201.80293 0 0 1 -77.07485,150.67016"
+         sodipodi:end="0.8424253"
+         sodipodi:start="5.4400389"
+         sodipodi:ry="201.80293"
+         sodipodi:rx="230.52487"
+         sodipodi:cy="796.41168"
+         sodipodi:cx="238.00586"
+         sodipodi:type="arc"
+         id="path4142"
+         style="fill:none;fill-opacity:1;stroke:#263238;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4188"
+       transform="translate(0,2.3895229e-6)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#263238;stroke-width:10.43484306;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4142-7"
+         sodipodi:type="arc"
+         sodipodi:cx="264.91736"
+         sodipodi:cy="796.71954"
+         sodipodi:rx="229.99406"
+         sodipodi:ry="220.2422"
+         sodipodi:start="5.2992846"
+         sodipodi:end="0.97819497"
+         d="M 392.28319,613.33183 A 229.99406,220.2422 0 0 1 494.91049,796.09122 229.99406,220.2422 0 0 1 393.37381,979.40838"
+         sodipodi:open="true" />
+      <g
+         transform="matrix(-1,0,0,1,517.68991,4.7790461e-6)"
+         id="g4181">
+        <path
+           sodipodi:open="true"
+           d="m 391.33177,645.71745 a 230.52487,201.80293 0 0 1 77.19895,150.62147 230.52487,201.80293 0 0 1 -77.07485,150.67016"
+           sodipodi:end="0.8424253"
+           sodipodi:start="5.4400389"
+           sodipodi:ry="201.80293"
+           sodipodi:rx="230.52487"
+           sodipodi:cy="796.41168"
+           sodipodi:cx="238.00586"
+           sodipodi:type="arc"
+           id="path4183"
+           style="fill:none;fill-opacity:1;stroke:#263238;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:open="true"
+           d="M 392.28319,613.33183 A 229.99406,220.2422 0 0 1 494.91049,796.09122 229.99406,220.2422 0 0 1 393.37381,979.40838"
+           sodipodi:end="0.97819497"
+           sodipodi:start="5.2992846"
+           sodipodi:ry="220.2422"
+           sodipodi:rx="229.99406"
+           sodipodi:cy="796.71954"
+           sodipodi:cx="264.91736"
+           sodipodi:type="arc"
+           id="path4185"
+           style="fill:none;fill-opacity:1;stroke:#263238;stroke-width:10.43484306;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+    </g>
   </g>
 </svg>
