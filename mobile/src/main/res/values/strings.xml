@@ -19,13 +19,13 @@
     </string-array>
 
     <string-array name="patternValues">
+        <item>0,500</item>
+        <item>0,500,50,500</item>
+        <item>0,500,50,500,50,500</item>
         <item>0,200</item>
         <item>0,200,50,200</item>
         <item>0,200,50,200,50,200</item>
         <item>0,100</item>
-        <item>0,100,50,100</item>
-        <item>0,100,50,100,50,100</item>
-        <item>0,75</item>
     </string-array>
 
     <string name="custom">Custom</string>
