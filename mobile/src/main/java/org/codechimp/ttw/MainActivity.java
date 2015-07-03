@@ -19,16 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get references to UI widgets
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            try {
-                setSupportActionBar(toolbar);
-            } catch (Throwable t) {
-                // WTF SAMSUNG 4.2.2!
-            }
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        }
+//        // Get references to UI widgets
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        if (toolbar != null) {
+//            try {
+//                setSupportActionBar(toolbar);
+//            } catch (Throwable t) {
+//                // WTF SAMSUNG 4.2.2!
+//            }
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        }
 
         Button hideLauncherButton = (Button) findViewById(R.id.hideLauncherButton);
         hideLauncherButton.setOnClickListener(new View.OnClickListener() {
