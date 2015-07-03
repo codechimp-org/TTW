@@ -1,12 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PluginActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PluginActivity">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar"/>
 
     <Button
         android:id="@+id/customButton"
@@ -15,13 +15,14 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/custom"
-        android:textColor="@color/Accent"/>
+        android:textColor="@color/Accent"
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/patternsListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/customButton"
-        android:layout_below="@id/toolbar" />
+        android:layout_below="@id/toolbar"/>
 
 </RelativeLayout>
