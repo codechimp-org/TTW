@@ -3,6 +3,7 @@ package org.codechimp.ttw;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +43,18 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
         setContentView(R.layout.activity_plugin);
 
         // Get references to UI widgets
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            try {
+                setSupportActionBar(toolbar);
+            } catch (Throwable t) {
+                // WTF SAMSUNG 4.2.2!
+            }
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_discard);
+        }
+
         patternsListView = (ListView) findViewById(R.id.patternsListView);
         buttonCustom = (Button) findViewById(R.id.customButton);
 
