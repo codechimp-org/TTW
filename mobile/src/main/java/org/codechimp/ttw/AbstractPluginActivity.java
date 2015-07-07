@@ -20,7 +20,6 @@ public abstract class AbstractPluginActivity extends AppCompatActivity
      * There is no need to save/restore this field's state.
      */
     private boolean mIsCancelled = false;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState)
