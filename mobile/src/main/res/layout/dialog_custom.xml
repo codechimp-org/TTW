@@ -62,8 +62,8 @@
             android:layout_height="fill_parent"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/tap_pattern"
-            android:textColor="@color/SecondaryText"
             android:textAllCaps="false"
+            android:textColor="@color/SecondaryText"
             android:textSize="32sp" />
     </LinearLayout>
 

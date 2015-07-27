@@ -4,12 +4,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * This is the "Edit" activity for a Locale Plug-in.
@@ -38,6 +44,8 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
     private String patternValue;
 
     final Context context = this;
+    private long lastTapStart = 0;
+    ArrayList<Long> taps = new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -57,6 +65,8 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_discard);
         }
+
+        ResetTapPattern();
 
         patternsListView = (ListView) findViewById(R.id.patternsListView);
         buttonCustom = (Button) findViewById(R.id.customButton);
@@ -83,15 +93,41 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                 dialog.setContentView(R.layout.dialog_custom);
                 dialog.setTitle(R.string.vibrate_pattern);
 
+                ImageButton dialogButtonRevert = (ImageButton) dialog.findViewById(R.id.dialogButtonRevert);
                 Button dialogButtonSave = (Button) dialog.findViewById(R.id.dialogButtonSave);
                 Button dialogButtonCancel = (Button) dialog.findViewById(R.id.dialogButtonCancel);
                 Button dialogButtonTry = (Button) dialog.findViewById(R.id.dialogButtonTry);
+                Button dialogButtonTap = (Button) dialog.findViewById(R.id.dialogButtonTap);
+
+                dialogButtonTap.setOnTouchListener(new ImageButton.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_DOWN) {
+                            Long now = System.currentTimeMillis();
+                            if (lastTapStart > 0)
+                                taps.add(now - lastTapStart);
+
+                            lastTapStart = now;
+                        }
+
+                        return false;
+                    }
+                });
+
+                dialogButtonRevert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ResetTapPattern();
+                    }
+                });
 
                 dialogButtonSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO - save the pattern
+                        patternName = getString(R.string.custom);
+                        patternValue = TextUtils.join(",", taps);
                         dialog.dismiss();
+                        finish();
                     }
                 });
 
@@ -105,13 +141,31 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                 dialogButtonTry.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Do nothing
+                        if (taps.size() < 2) return;
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+                        //Break into an array of longs
+                        long[] patternLongs = new long[taps.size()];
+                        for (int i = 0; i < taps.size(); i++) {
+                            patternLongs[i] = taps.get(i);
+                        }
+
+                        vibrator.vibrate(patternLongs, -1);
                     }
                 });
 
                 dialog.show();
             }
         });
+    }
+
+
+    /**
+     * Clears and adds a starting 0 tap required for vibration patterns
+     */
+    private void ResetTapPattern() {
+        taps.clear();
+        taps.add(0l);
     }
 
     @Override
