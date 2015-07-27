@@ -36,5 +36,6 @@
     <string name="save_pattern">Save</string>
     <string name="cancel_pattern">Cancel</string>
     <string name="try_pattern">Try</string>
+    <string name="tap_pattern">Tap a pattern</string>
 
 </resources>
