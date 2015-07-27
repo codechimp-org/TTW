@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <ImageButton
-        android:id="@+id/dialogButtonRevert"
+        android:id="@+id/dialogButtonReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -52,7 +52,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/dialogButtonSave"
-        android:layout_below="@id/dialogButtonRevert"
+        android:layout_below="@id/dialogButtonReset"
         android:background="@drawable/frame"
         android:padding="4dp">
 

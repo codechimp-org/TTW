@@ -93,7 +93,7 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                 dialog.setContentView(R.layout.dialog_custom);
                 dialog.setTitle(R.string.vibrate_pattern);
 
-                ImageButton dialogButtonRevert = (ImageButton) dialog.findViewById(R.id.dialogButtonRevert);
+                ImageButton dialogButtonReset = (ImageButton) dialog.findViewById(R.id.dialogButtonReset);
                 Button dialogButtonSave = (Button) dialog.findViewById(R.id.dialogButtonSave);
                 Button dialogButtonCancel = (Button) dialog.findViewById(R.id.dialogButtonCancel);
                 Button dialogButtonTry = (Button) dialog.findViewById(R.id.dialogButtonTry);
@@ -114,7 +114,7 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                     }
                 });
 
-                dialogButtonRevert.setOnClickListener(new View.OnClickListener() {
+                dialogButtonReset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ResetTapPattern();
