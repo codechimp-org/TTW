@@ -1,5 +1,6 @@
 package org.codechimp.ttw;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
 
     private String patternName;
     private String patternValue;
+
+    final Context context = this;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -75,7 +78,21 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
         buttonCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO - display custom tap dialog
+                // display custom tap dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_custom);
+                dialog.setTitle(R.string.vibrate_pattern);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonSave);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
     }
