@@ -15,8 +15,7 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/custom"
-        android:textColor="@color/Accent"
-        android:visibility="gone"/>
+        android:textColor="@color/Accent" />
 
     <ListView
         android:id="@+id/patternsListView"

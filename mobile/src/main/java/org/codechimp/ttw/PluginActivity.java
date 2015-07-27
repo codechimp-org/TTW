@@ -83,12 +83,29 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                 dialog.setContentView(R.layout.dialog_custom);
                 dialog.setTitle(R.string.vibrate_pattern);
 
-                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonSave);
-                // if button is clicked, close the custom dialog
-                dialogButton.setOnClickListener(new View.OnClickListener() {
+                Button dialogButtonSave = (Button) dialog.findViewById(R.id.dialogButtonSave);
+                Button dialogButtonCancel = (Button) dialog.findViewById(R.id.dialogButtonCancel);
+                Button dialogButtonTry = (Button) dialog.findViewById(R.id.dialogButtonTry);
+
+                dialogButtonSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO - save the pattern
+                        dialog.dismiss();
+                    }
+                });
+
+                dialogButtonCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+                    }
+                });
+
+                dialogButtonTry.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Do nothing
                     }
                 });
 
