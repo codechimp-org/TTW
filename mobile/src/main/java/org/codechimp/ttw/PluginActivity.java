@@ -66,8 +66,6 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_discard);
         }
 
-        ResetTapPattern();
-
         patternsListView = (ListView) findViewById(R.id.patternsListView);
         buttonCustom = (Button) findViewById(R.id.customButton);
 
@@ -159,6 +157,12 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        ResetTapPattern();
+    }
 
     /**
      * Clears and adds a starting 0 tap required for vibration patterns
