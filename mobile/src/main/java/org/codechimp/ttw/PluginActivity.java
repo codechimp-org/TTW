@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +33,8 @@ import java.util.ArrayList;
  * @see com.twofortyfouram.locale.Intent#ACTION_EDIT_SETTING
  * @see com.twofortyfouram.locale.Intent#EXTRA_BUNDLE
  */
-public final class PluginActivity extends AbstractPluginActivity { //implements LoaderManager.LoaderCallbacks<Cursor> {
+public final class PluginActivity extends AbstractPluginActivity {
+    private static final String TAG = "PluginActivity";
 
     private ListView patternsListView;
     private Button buttonCustom;
@@ -140,6 +142,9 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                     @Override
                     public void onClick(View v) {
                         if (taps.size() < 2) return;
+
+                        Log.d(TAG, "Pattern:" + TextUtils.join(",", taps));
+
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
                         //Break into an array of longs
