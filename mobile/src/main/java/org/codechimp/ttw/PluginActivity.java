@@ -152,6 +152,8 @@ public final class PluginActivity extends AbstractPluginActivity { //implements 
                     }
                 });
 
+                ResetTapPattern();
+
                 dialog.show();
             }
         });
