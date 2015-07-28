@@ -46,7 +46,7 @@ public final class PluginActivity extends AbstractPluginActivity {
     private String patternValue;
 
     final Context context = this;
-    private long lastTapStart = 0;
+    private long lastTouchAction = 0;
     ArrayList<Long> taps = new ArrayList<>();
 
     @Override
@@ -104,10 +104,10 @@ public final class PluginActivity extends AbstractPluginActivity {
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_DOWN) {
                             Long now = System.currentTimeMillis();
-                            if (lastTapStart > 0)
-                                taps.add(now - lastTapStart);
+                            if (lastTouchAction > 0)
+                                taps.add(now - lastTouchAction);
 
-                            lastTapStart = now;
+                            lastTouchAction = now;
                         }
 
                         return false;
