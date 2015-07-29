@@ -102,14 +102,23 @@ public final class PluginActivity extends AbstractPluginActivity {
                 dialogButtonTap.setOnTouchListener(new ImageButton.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_DOWN) {
-                            Long now = System.currentTimeMillis();
+                        Long now = System.currentTimeMillis();
+
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                            //If longer than 5 seconds since last tap then we've started a new pattern
+                            if (now - lastTouchAction > 5000) {
+                                ResetTapPattern();
+                            } else {
+                                if (lastTouchAction > 0)
+                                    taps.add(now - lastTouchAction);
+                            }
+                            lastTouchAction = now;
+                        } else if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (lastTouchAction > 0)
                                 taps.add(now - lastTouchAction);
 
                             lastTouchAction = now;
                         }
-
                         return false;
                     }
                 });
