@@ -50,6 +50,8 @@ public final class PluginActivity extends AbstractPluginActivity {
     ArrayList<Long> taps = new ArrayList<>();
     private boolean resetOnNextTap = false;
 
+    private Dialog dialog;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public final class PluginActivity extends AbstractPluginActivity {
             @Override
             public void onClick(View v) {
                 // display custom tap dialog
-                final Dialog dialog = new Dialog(context);
+                dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_custom);
                 dialog.setTitle(R.string.vibrate_pattern);
 
@@ -187,6 +189,14 @@ public final class PluginActivity extends AbstractPluginActivity {
         super.onStart();
 
         resetTapPattern();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (dialog != null)
+            dialog.dismiss();
     }
 
     /**
