@@ -48,6 +48,7 @@ public final class PluginActivity extends AbstractPluginActivity {
     final Context context = this;
     private long lastTouchAction = 0;
     ArrayList<Long> taps = new ArrayList<>();
+    private boolean resetOnNextTap = false;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -104,17 +105,23 @@ public final class PluginActivity extends AbstractPluginActivity {
                     public boolean onTouch(View v, MotionEvent event) {
                         Long now = System.currentTimeMillis();
 
+                        if (resetOnNextTap) {
+                            resetTapPattern();
+                            resetOnNextTap = false;
+                            lastTouchAction = now;
+                        }
+
                         if (event.getAction() == MotionEvent.ACTION_DOWN) {
                             //If longer than 5 seconds since last tap then we've started a new pattern
                             if (now - lastTouchAction > 5000) {
-                                ResetTapPattern();
+                                resetTapPattern();
                             } else {
-                                if (lastTouchAction > 0)
+                                if (lastTouchAction > 0 && now - lastTouchAction > 0)
                                     taps.add(now - lastTouchAction);
                             }
                             lastTouchAction = now;
                         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                            if (lastTouchAction > 0)
+                            if (lastTouchAction > 0 && now - lastTouchAction > 0)
                                 taps.add(now - lastTouchAction);
 
                             lastTouchAction = now;
@@ -126,7 +133,7 @@ public final class PluginActivity extends AbstractPluginActivity {
                 dialogButtonReset.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ResetTapPattern();
+                        resetTapPattern();
                     }
                 });
 
@@ -163,10 +170,12 @@ public final class PluginActivity extends AbstractPluginActivity {
                         }
 
                         vibrator.vibrate(patternLongs, -1);
+
+                        resetOnNextTap = true;
                     }
                 });
 
-                ResetTapPattern();
+                resetTapPattern();
 
                 dialog.show();
             }
@@ -177,13 +186,13 @@ public final class PluginActivity extends AbstractPluginActivity {
     protected void onStart() {
         super.onStart();
 
-        ResetTapPattern();
+        resetTapPattern();
     }
 
     /**
      * Clears and adds a starting 0 tap required for vibration patterns
      */
-    private void ResetTapPattern() {
+    private void resetTapPattern() {
         taps.clear();
         taps.add(0l);
     }
