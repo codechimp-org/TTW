@@ -210,7 +210,7 @@ public final class PluginActivity extends AbstractPluginActivity {
     @Override
     public void finish() {
         if (!isCanceled()) {
-            if (!patternName.isEmpty()) {
+            if (patternName != null && !patternName.isEmpty()) {
                 final Intent resultIntent = new Intent();
 
                 /*
