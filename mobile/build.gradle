@@ -4,7 +4,7 @@ project.archivesBaseName = "TTW";
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "org.codechimp.ttw"
