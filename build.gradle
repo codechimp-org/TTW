@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0-beta2'
+        classpath 'com.android.tools.build:gradle:2.3.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -16,4 +16,14 @@ allprojects {
     repositories {
         jcenter()
     }
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation"
+    }
+}
+
+ext {
+    supportVersion = "25.2.0"
+    playServicesVersion = "10.2.1"
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
 }
