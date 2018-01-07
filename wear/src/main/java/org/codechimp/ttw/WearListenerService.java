@@ -1,14 +1,11 @@
 package org.codechimp.ttw;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageEvent;
-import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
 
 public class WearListenerService extends WearableListenerService {
@@ -21,36 +18,14 @@ public class WearListenerService extends WearableListenerService {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-                    @Override
-                    public void onConnected(Bundle connectionHint) {
-                        Log.d(TAG, "onConnected: " + connectionHint);
-                        // Now you can use the data layer API
-                    }
-
-                    @Override
-                    public void onConnectionSuspended(int cause) {
-                        Log.d(TAG, "onConnectionSuspended: " + cause);
-                    }
-                })
-                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(ConnectionResult result) {
-                        Log.d(TAG, "onConnectionFailed: " + result);
-                    }
-                })
-                .addApi(Wearable.API)
-                .build();
-        googleApiClient.connect();
     }
 
     @Override
     public void onDestroy() {
-        googleApiClient.disconnect();
         super.onDestroy();
     }
+
+
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {

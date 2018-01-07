@@ -7,17 +7,20 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SendToWearTask extends AsyncTask<String, Void, Void> {
 
     private static final String TAG = "SendToWearTask";
     private static final String NOTIFICATION_PATH = "/notification";
 
-    Context context;
+    private Context context;
 
     public SendToWearTask(Context context) {
         this.context = context;
@@ -52,19 +55,19 @@ public class SendToWearTask extends AsyncTask<String, Void, Void> {
         googleApiClient.blockingConnect();
 
         // Send the item to wear
-        NodeApi.GetConnectedNodesResult nodes =
-                Wearable.NodeApi.getConnectedNodes(googleApiClient).await();
-        if (nodes != null) {
-            for (Node node : nodes.getNodes()) {
-                MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                        googleApiClient, node.getId(), NOTIFICATION_PATH, pattern.getBytes()).await();
 
-                if (!result.getStatus().isSuccess()) {
-                    Log.e(TAG, "ERROR: failed to send Message: " + result.getStatus());
-                }
+        List<Node> nodes = null;
+        try {
+            nodes = Tasks.await(Wearable.getNodeClient(context).getConnectedNodes());
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (nodes != null) {
+            for (Node node : nodes) {
+                Wearable.getMessageClient(context).sendMessage(
+                        node.getId(), NOTIFICATION_PATH, pattern.getBytes());
             }
-        } else {
-            Log.e(TAG, "ERROR: No nodes found");
         }
 
         return null;

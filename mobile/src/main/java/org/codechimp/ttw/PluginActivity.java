@@ -1,5 +1,6 @@
 package org.codechimp.ttw;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -89,6 +90,7 @@ public final class PluginActivity extends AbstractPluginActivity {
         });
 
         buttonCustom.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onClick(View v) {
                 // display custom tap dialog

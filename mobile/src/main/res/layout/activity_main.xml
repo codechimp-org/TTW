@@ -38,11 +38,13 @@
                 android:textColor="@color/Text" />
 
             <TextView
+                android:id="@+id/introTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titleTextView"
                 android:text="@string/intro"
                 android:textColor="@color/Text" />
+
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

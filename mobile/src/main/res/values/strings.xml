@@ -30,7 +30,7 @@
 
     <string name="custom">Custom</string>
     <string name="title">Tasker Tap Wear</string>
-    <string name="intro">This app is a Tasker plugin to trigger a vibration pattern on the wearable device only, for a discreet notification tap where a popup is not required.\n\nTo use it create a new Tasker task and add TTW from the plugins.  You\'ll be able to change the type of vibration tap within the configuration screen.</string>
+    <string name="intro">This app is a Tasker plugin to trigger a vibration pattern on the wearable device only, for a discreet notification tap where a popup is not required.\n\nTo use it create a new Tasker task and add TTW from the plugins.  You\'ll be able to change the type of vibration tap within the configuration screen.\n\nIf you are using an Android Wear 2 device please ensure you install the wear app from the Play Store on your watch.</string>
     <string name="hide_launcher">Hide launcher icon</string>
     <string name="vibrate_pattern">Vibrate pattern</string>
     <string name="save_pattern">Save</string>
