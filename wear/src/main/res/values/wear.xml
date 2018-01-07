@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="android_wear_capabilities" translatable="false">
+        <!-- IMPORTANT NOTE: Should be different than capability in phone res/values/wear.xml. -->
+        <item>verify_remote_ttw_wear_app</item>
+    </string-array>
+</resources>
