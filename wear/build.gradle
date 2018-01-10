@@ -8,7 +8,7 @@ android {
     publishNonDefault true
 
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "org.codechimp.ttw"
@@ -50,7 +50,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.gms:play-services-wearable:11.8.0'
+    implementation 'com.google.android.gms:play-services-wearable:11.6.0'
 
     provided 'com.google.android.wearable:wearable:2.1.0'
 }
