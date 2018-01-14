@@ -17,5 +17,15 @@ allprojects {
     repositories {
         jcenter()
         google()
+        flatDir {
+            dirs 'libs'
+        }
     }
+}
+
+ext {
+    supportVersion = "27.0.2"
+    playServicesVersion = "11.8.0"
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.2"
 }

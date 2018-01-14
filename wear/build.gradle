@@ -7,13 +7,13 @@ android {
     // phone module's build.gradle file
     publishNonDefault true
 
-    compileSdkVersion 27
-    buildToolsVersion '26.0.2'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "org.codechimp.ttw"
         minSdkVersion 23
-        targetSdkVersion 27
+        targetSdkVersion 26
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE) + 1
     }
@@ -28,29 +28,16 @@ android {
         }
     }
 
-    flavorDimensions "wear"
-
-    productFlavors {
-        wear1 {
-            dimension "wear"
-            // Use the defaultConfig value
-        }
-        wear2 {
-            dimension "wear"
-            minSdkVersion 24
-        }
-    }
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "TTW-${variant.name}-${project.VERSION_NAME}.apk"
+            outputFileName = "TTW-Wear-${variant.name}-${project.VERSION_NAME}.apk"
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.gms:play-services-wearable:11.6.0'
+    implementation "com.google.android.gms:play-services-wearable:$rootProject.ext.playServicesVersion"
 
     provided 'com.google.android.wearable:wearable:2.1.0'
 }
