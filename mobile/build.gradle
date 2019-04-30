@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-project.archivesBaseName = "TTW";
+project.archivesBaseName = "TTW-mobile";
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -10,8 +10,17 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionName project.VERSION_NAME
-        versionCode Integer.parseInt(project.VERSION_CODE)
         wearAppUnbundled true
+
+        ext.env = System.getenv()
+
+        if (env.BUILD_NUMBER != null) {
+            versionCode Integer.parseInt("50" + env.BUILD_NUMBER + "1")
+        } else {
+            versionCode Integer.parseInt(project.VERSION_CODE)
+        }
+
+        versionName project.VERSION_NAME + "." + versionCode.toString()
     }
 
     signingConfigs { release }
@@ -24,10 +33,15 @@ android {
         }
     }
 
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "TTW-${variant.name}-${project.VERSION_NAME}.apk"
-        }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "TTW-${variant.name}-${project.VERSION_NAME}.apk"
+//        }
+//    }
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
     }
 }
 
@@ -46,11 +60,9 @@ dependencies {
     implementation 'com.google.android.support:wearable:2.4.0'
 }
 
-// Signing properties goes in project root (NOT app)
-def Properties props = new Properties()
-def propFile = new File('signing.properties')
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
+if (signingPropsFile.canRead()) {
+    def props = new Properties()
+    props.load(signingPropsFile.newReader('UTF-8'))
 
     if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
             props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {

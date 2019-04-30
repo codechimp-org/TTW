@@ -28,3 +28,7 @@ ext {
     playServicesVersion = "16.0.1"
     compileSdkVersion = 28
 }
+
+subprojects {
+    ext.signingPropsFile = rootProject.file('signing.properties')
+}
