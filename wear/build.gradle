@@ -17,15 +17,16 @@ android {
 
         ext.env = System.getenv()
 
+        String versionSuffix
         if (env.BUILD_NUMBER != null) {
             versionCode Integer.parseInt("50" + env.BUILD_NUMBER + "2")
-            versionCodeSuffix Integer.parseInt("50" + env.BUILD_NUMBER + "0")
+            versionSuffix = "50" + env.BUILD_NUMBER + "0"
         } else {
             versionCode Integer.parseInt(project.VERSION_CODE + 1)
-            versionCodeSuffix Integer.parseInt(project.VERSION_CODE)
+            versionSuffix = project.VERSION_CODE.toString()
         }
 
-        versionName project.VERSION_NAME + "." + versionCodeSuffix.toString()
+        versionName project.VERSION_NAME + "." + versionSuffix
     }
 
     signingConfigs { release }
