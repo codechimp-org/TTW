@@ -8,12 +8,11 @@ android {
     publishNonDefault true
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "org.codechimp.ttw"
         minSdkVersion 23
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE) + 1
     }
@@ -39,7 +38,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.google.android.gms:play-services-wearable:$rootProject.ext.playServicesVersion"
 
-    provided 'com.google.android.wearable:wearable:2.1.0'
+    compileOnly 'com.google.android.wearable:wearable:2.4.0'
 }
 
 // Signing properties goes in project root (NOT app)

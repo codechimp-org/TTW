@@ -4,12 +4,11 @@ project.archivesBaseName = "TTW";
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "org.codechimp.ttw"
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion 21
+        targetSdkVersion 28
         versionName project.VERSION_NAME
         versionCode Integer.parseInt(project.VERSION_CODE)
         wearAppUnbundled true
@@ -43,8 +42,8 @@ dependencies {
     implementation "com.android.support:preference-v14:$rootProject.ext.supportVersion"
     implementation "com.android.support:design:$rootProject.ext.supportVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
-    provided 'com.google.android.wearable:wearable:2.1.0'
-    implementation 'com.google.android.support:wearable:2.1.0'
+    compileOnly 'com.google.android.wearable:wearable:2.4.0'
+    implementation 'com.google.android.support:wearable:2.4.0'
 }
 
 // Signing properties goes in project root (NOT app)
