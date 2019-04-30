@@ -16,11 +16,13 @@ android {
 
         if (env.BUILD_NUMBER != null) {
             versionCode Integer.parseInt("50" + env.BUILD_NUMBER + "1")
+            versionCodeSuffix Integer.parseInt("50" + env.BUILD_NUMBER + "0")
         } else {
             versionCode Integer.parseInt(project.VERSION_CODE)
+            versionCodeSuffix Integer.parseInt(project.VERSION_CODE)
         }
 
-        versionName project.VERSION_NAME + "." + versionCode.toString()
+        versionName project.VERSION_NAME + "." + versionCodeSuffix.toString()
     }
 
     signingConfigs { release }
